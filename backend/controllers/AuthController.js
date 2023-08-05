@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 
 exports.sigunp = async (req, res, next) => {
   try {
+    console.log(req.body);
     const { email, name, password } = req.body;
     const user = await User.findOne({ email });
     if (user) {
@@ -78,6 +79,7 @@ exports.getUser = async (req, res, next) => {
       success: true,
       data: {
         user: req.user,
+        token: req.headers.authorization
       },
     });
   } catch (error) {
