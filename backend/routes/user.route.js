@@ -1,9 +1,9 @@
 const express = require('express');
+const AuthGuard = require("../middleware/auth");
+const AuthController = require("../controllers/AuthController");
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    return res.send({message: 'Hello'})
-});
+router.get('/user', AuthGuard, AuthController.getUser );
 
 module.exports = router;
